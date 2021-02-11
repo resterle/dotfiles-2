@@ -4,14 +4,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/raphael/.oh-my-zsh"
 
-# asdf runtime management
-ASDF_DIR=$HOME/apps/asdf
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gnzh"
+ZSH_THEME="intheloop"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,7 +108,7 @@ alias am='alsamixer'
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 #source /home/raphael/apps/kube-ps1.sh
-source /home/raphael/.oc_completion
+#source /home/raphael/.oc_completion
 KUBE_PS1_SYMBOL_USE_IMG=true
 
 function get_cluster_short() {

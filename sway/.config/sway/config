@@ -2,6 +2,7 @@
 
 ### Variables
 #
+font "pango:hack nerd font mono 11"
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -14,7 +15,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "roboto mono for powerline 14" -show combi | xargs swaymsg exec --
+set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "hack nerd font 12" -show combi | xargs swaymsg exec --
 set $passmenu $HOME/.config/sway/scripts/passmenu-rofi-wayland
 
 set $lock_screen swaylock -f -c 000000
@@ -147,6 +148,11 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $wsF1 "F1"
+
+# Window assignments
+assign [class="^Chromium$"] $ws2
+assign [class="^Spotify$"] $ws10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -159,6 +165,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+F1 workspace $wsF1
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -171,6 +178,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+F1 move container to workspace $wsF1
 
 bindsym $mod+Alt+Right workspace next
 bindsym $mod+Alt+Left workspace prev
@@ -257,8 +265,14 @@ bar {
 }
 
 # Brightnes control
-bindcode 232 exec xbacklight -2
-bindcode 233 exec xbacklight +2
+bindsym XF86MonBrightnessDown exec xbacklight -2
+bindsym XF86MonBrightnessUp exec xbacklight +2
+
+# Volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 bindsym $mod+m exec --no-startup-id 'makoctl dismiss'
 
@@ -273,6 +287,8 @@ for_window [app_id="com.nextcloud.desktopclient.nextcloud"] floating enable
 # Tag xwayland windows as such
 for_window [shell="xwayland"] title_format "%title x"
 
+# Autostart
+exec --no-startup-id gammastep
 exec --no-startup-id mako
 
 include /etc/sway/config.d/*
