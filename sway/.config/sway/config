@@ -19,13 +19,14 @@ set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "hack nerd font
 set $passmenu $HOME/.config/sway/scripts/passmenu-rofi-wayland
 
 # ! actualy swaylock-effects!
-set $lock_screen swaylock \
+set $lock_screen swaylock -f \
 --fade-in 0.5 \
 --screenshots \
 --clock \
 --effect-blur 7x5 \
 --effect-greyscale \
---effect-vignette 0.5:0.5
+--effect-vignette 0.5:0.5 \
+--font "Hack Monospace"
 
 ### Output configuration
 #
