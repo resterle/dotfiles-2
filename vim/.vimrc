@@ -40,6 +40,10 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 
+" move editor tabs
+nmap gm :tabm +1<CR>
+nmap gM :tabm -1<CR>
+
 " show hidden chars
 set list
 set listchars=tab:›\ ,eol:↲,trail:⋅
