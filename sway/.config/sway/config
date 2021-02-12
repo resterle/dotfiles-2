@@ -18,7 +18,14 @@ set $term alacritty
 set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "hack nerd font 12" -show combi | xargs swaymsg exec --
 set $passmenu $HOME/.config/sway/scripts/passmenu-rofi-wayland
 
-set $lock_screen swaylock -f -c 000000
+# ! actualy swaylock-effects!
+set $lock_screen swaylock \
+--fade-in 0.5 \
+--screenshots \
+--clock \
+--effect-blur 7x5 \
+--effect-greyscale \
+--effect-vignette 0.5:0.5
 
 ### Output configuration
 #
@@ -276,7 +283,8 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 bindsym $mod+m exec --no-startup-id 'makoctl dismiss'
 
-bindsym $mod+Shift+s exec --no-startup-id 'grim -g "$(slurp)" ~/Pictures/screenshot/$(date +%N).png'
+# bindsym $mod+Shift+s exec --no-startup-id 'grim -g "$(slurp)" ~/Pictures/screenshot/$(date +%N).png'
+bindsym $mod+Shift+s exec --no-startup-id 'grim -g "$(slurp)" - | swappy -f -'
 
 for_window [class="jetbrains-idea" title="win0"] floating enable
 for_window [app_id="pavucontrol"] floating enable

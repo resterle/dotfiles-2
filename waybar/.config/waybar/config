@@ -19,10 +19,11 @@
              "4": "",
              "5": "",
              "6": "",
-             "F1": "",
+             "10": "~",
+             "F1": "",
              "urgent": "",
              "focused": "",
-             "default": "ﳓ"
+             "default": ""
          },
          "persistent_workspaces": {
             "1": [],
