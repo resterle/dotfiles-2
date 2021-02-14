@@ -2,21 +2,9 @@
 
 shopt -s nullglob globstar
 
-typeit=0
-if [[ $1 == "--type" ]]; then
-    typeit=1
-    shift
-fi
-
-prefix=${PASSWORD_STORE_DIR-~/.password-store}
-password_files=( "$prefix"/**/*.gpg )
-password_files=( "${password_files[@]#"$prefix"/}" )
-password_files=( "${password_files[@]%.gpg}" )
-
-password=$(printf '%s\n' "${password_files[@]}" | rofi -font "hack nerd font 12" -theme Arc-Dark -p '🔑 ' -dmenu "$@")
+pw_files=$(gopass ls --flat)
+password=$(printf '%s\n' "${pw_files[@]}" | rofi -font "hack nerd font 12" -theme Arc-Dark -p '🔑 ' -dmenu "$@")
 
 [[ -n $password ]] || exit
 
-if [[ $typeit -eq 0 ]]; then
-    gopass show -c $password
-fi
+gopass show -c $password
