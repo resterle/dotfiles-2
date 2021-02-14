@@ -22,7 +22,7 @@ Plug 'elixir-editors/vim-elixir'
 " Initialize plugin system
 call plug#end()
 
-# No temp files for gopass
+" No temp files for gopass
 au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 
 " ===========================================================

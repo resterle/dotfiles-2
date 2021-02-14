@@ -66,7 +66,7 @@ ZSH_THEME="gnzh"
 
 # elixir plugin https://github.com/gusaiani/elixir-oh-my-zsh.git elixir
 
-plugins=(git asdf mix)
+plugins=(git asdf mix-fast)
 
 source $ZSH/oh-my-zsh.sh
 
