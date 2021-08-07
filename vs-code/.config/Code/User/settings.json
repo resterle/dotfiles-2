@@ -1,6 +1,12 @@
 {
-    "terminal.integrated.fontSize": 17,
-    "editor.fontSize": 16,
+    "terminal.integrated.fontSize": 15,
+    "editor.fontSize": 15,
     "editor.fontFamily": "'Hack Nerd Font Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "vim.vimrc.enable": true
+    "vim.vimrc.enable": true,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "editor.fontLigatures": true,
+    "liveshare.presence": true,
+    "liveshare.authenticationProvider": "Microsoft",
+    "workbench.colorTheme": "Default Light+"
 }

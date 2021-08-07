@@ -96,7 +96,7 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=$PATH:/home/raphael/apps/bin
+export PATH=$PATH:/home/raphael/apps/bin:/home/raphael/.local/bin
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -108,20 +108,12 @@ alias gst='git status'
 alias am='alsamixer'
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
-#source /home/raphael/apps/kube-ps1.sh
-#source /home/raphael/.oc_completion
-KUBE_PS1_SYMBOL_USE_IMG=true
-
-function get_cluster_short() {
-  echo "$1" | cut -d . -f1
-}
-
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-PROMPT=$PROMPT
-
-TERMINAL=alacritty
+export TERMINAL=alacritty
+export XDG_CURRENT_DESKTOP=sway
+export DOCKER_GATEWAY_HOST=172.17.0.1
 
 if  [ -z $DISPLAY ] && [ "$TTY" = "/dev/tty1" ]; then
-      exec sway
+    export XDG_CONFIG_HOME=$HOME/.config
+    export XDG_DATA_HOME=$HOME/.local/share
+    exec sway
 fi

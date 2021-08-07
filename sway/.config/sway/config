@@ -15,7 +15,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "hack nerd font 12" -show combi | xargs swaymsg exec --
+set $menu rofi -combi-modi window#drun#ssh -theme Arc-Dark -font "hack nerd font 12" -show combi -icon-theme "Papirus" -show-icons | xargs swaymsg exec --
 set $passmenu $HOME/.config/sway/scripts/passmenu-rofi-wayland
 
 # ! actualy swaylock-effects!
@@ -37,11 +37,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 default_border pixel
 
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+output eDP-1 res 1920x1080 pos 0 0
+output DP-1 res 2560x1440 pos 1920 0
 
 ### Idle configuration
 #
@@ -195,6 +194,9 @@ bindsym $mod+Shift+F1 move container to workspace $wsF1
 bindsym $mod+Alt+Right workspace next
 bindsym $mod+Alt+Left workspace prev
 
+bindsym $mod+Ctrl+Right move workspace output right
+bindsym $mod+Ctrl+Left move workspace output left
+
 #
 # Layout stuff:
 #
@@ -267,6 +269,14 @@ mode "exit" {
     bindsym Escape mode "default"
 }
 bindsym $mod+q mode "exit"
+
+mode "screen" {
+    #bindsym i output DP-1 disabled && swaymsg mode "default"
+    #bindsym e output eDP-1 disable && swaymsg mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "screen"
 
 #
 # Status Bar:

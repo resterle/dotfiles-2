@@ -17,6 +17,11 @@ Plug 'neoclide/coc.nvim'
 
 " Elixir
 Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+
 
 " All of your Plugins must be added before the following line
 " Initialize plugin system
@@ -59,26 +64,14 @@ filetype on
 
 set encoding=utf-8
 
-" scala config
-autocmd FileType json syntax match Comment +\/\/.\+$+
+" autocomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
-
-" Use K to either doHover or show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" Notify coc.nvim that <enter> has been pressed.
-" " Currently used for the formatOnType feature.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Toggle panel with Tree Views
- nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsPackages'
-nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsPackages'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'alchemist',
+    \ 'whitelist': ['elixir'],
+    \ 'completor': function('asyncomplete#sources#elixir#completor'),
+    \ 'config': { },
+    \ })
